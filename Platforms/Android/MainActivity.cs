@@ -5,11 +5,10 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Widget;
 using LockScreen.Platforms.Android;
-using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+
 
 namespace LockScreen;
 
@@ -54,12 +53,17 @@ public class MainActivity : MauiAppCompatActivity
             if (resultCode == Result.Ok)
             {
                 Toast.MakeText(this, "Admin rights granted!", ToastLength.Short).Show();
-                LockScreenActivity();
             }
             else
             {
                 Toast.MakeText(this, "Admin rights denied!", ToastLength.Short).Show();
             }
         }
+    }
+
+    protected override void OnRestart()
+    {
+        base.OnRestart(); 
+        Finish();
     }
 }
